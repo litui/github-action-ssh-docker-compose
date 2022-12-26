@@ -1,9 +1,9 @@
 ## github-action-ssh-docker-compose
-Simple github action to run docker-compose on remote host.
+Simple github action to run docker compose (the plugin version) on remote host.
 
 This action packs contents of the action workspace into archive.
 Logs into remote host via ssh. Unpacks the workspace there and runs
-`docker-compose up -d` command.
+`docker compose up -d` command.
 
 Comparing to other actions with similar behavior this one does not use any
 unknown docker-images. It is entirely built from Dockerfile on top of
@@ -86,7 +86,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - uses: alex-ac/github-action-ssh-docker-compose@master
-      name: Docker-Compose Remote Deployment
+      name: Docker Compose Remote Deployment
       with:
         ssh_host: example.com
         ssh_private_key: ${{ secrets.EXAMPLE_COM_SSH_PRIVATE_KEY }}
@@ -100,7 +100,7 @@ jobs:
 
 In case you want to use some advanced features like secrets. You'll need to
 setup a docker swarm cluster and use docker stack command instead of the plain
-docker-compose. To do that just set `use_stack` input to `"true"`:
+dockercompose. To do that just set `use_stack` input to `"true"`:
 
 ```
 name: Deploy
@@ -125,8 +125,8 @@ jobs:
         use_stack: 'true'
 ```
 
-# Down deploy (Docker-compose down)
-If you need to run a docker-compose down to do a clean rollback. Only one down of the
+# Down deploy (Docker compose down)
+If you need to run a docker compose down to do a clean rollback. Only one down of the
 services will be executed To do that just set `docker_compose_down` input to `"true"`:
 ```
 name: Deploy
